@@ -29,25 +29,30 @@
                             </div>
                         @endif
                         <label for="title">Titolo</label>
-                        @if ($errors->has('title'))
-                        <input type="text" class="form-control is-invalid" id="title" name="title" placeholder="Titolo" value=" {{ old('title') }} ">
+                        <input type="text" class="form-control  @error('title') is-invalid @enderror" id="title" name="title" placeholder="Titolo" value=" {{ old('title') }} ">
                         <div class="invalid-feedback">{{ $errors->first('title') }}</div>
-                        @else
-                        <input type="text" class="form-control" id="title" name="title" placeholder="Titolo" value=" {{ old('title') }} ">
-                        @endif
                     </div>
+                    <label for="category_id"> Category </label>
+                    <select class="form-select @error('category_id') is-invalid @enderror" name="category_id">
+                          <option selected>Open this select menu</option>
+                          @foreach ($categories as $category)
+                          <option value="{{ $category->id }}"
+                                {{ old('category_id') == $category->id ? 'selected' : '' }}
+                                >{{ $category->name }}</option>
+                          @endforeach
+                        </select>
+                          @error('category_id')
+                          <div class="invalid-feedback">{{ $message }}</div>
+                          @enderror
+
                     <div class="form-group">
                         <label for="slug">Slug</label>
                         <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="content">Contenuto</label>
-                        @if ($errors->has('content'))
-                        <textarea class="form-control is-invalid" id="content" name="content" rows="3">{{ old('content') }}</textarea>
+                        <label for="content">Content</label>
+                        <textarea class="form-control  @error('content') is-invalid @enderror" id="content" name="content" placeholder="Contenuto" rows="10"> {{ old('content') }} </textarea>
                         <div class="invalid-feedback">{{ $errors->first('content') }}</div>
-                        @else
-                        <textarea class="form-control" id="content" name="content" rows="3">{{ old('content') }}</textarea>
-                        @endif
                     </div>
                     <button type="submit" class="btn btn-primary" id="saveBtn">Save</button>
                 </form>
