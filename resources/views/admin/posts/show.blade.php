@@ -35,6 +35,7 @@
                     <h1 class="card-title">{{ $post->title }}</h1>
                 </div>
                 <div class="card-body">
+                    <p class="card-text">{{ $category->name }}</p>
                     <p class="card-text">{{ $post->content }}</p>
                 </div>
             </div>
