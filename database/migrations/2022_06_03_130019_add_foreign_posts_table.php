@@ -15,7 +15,7 @@ class AddForeignPostsTable extends Migration
     {
         // one to many
         Schema::table("posts", function (Blueprint $table) {
-            $$table->unsignedBigInteger("category_id");
+            $table->unsignedBigInteger("category_id");
             $table
                 ->foreign("category_id")
                 ->references("id")
